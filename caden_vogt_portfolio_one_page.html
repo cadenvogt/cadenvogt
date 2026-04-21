@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caden Vogt | Creative Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          letterSpacing: {
+            widerplus: '0.24em'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #020202; }
+    .image-grain {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 2px);
+    }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+    .nav-link.active {
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-black text-white antialiased font-sans">
+  <div class="min-h-screen lg:grid lg:grid-cols-[280px_minmax(0,1fr)]">
+    <!-- Sidebar -->
+    <aside class="border-b border-white/10 px-6 py-8 lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r">
+      <div class="flex items-center justify-between lg:block">
+        <div>
+          <a href="#home" data-page="home" class="nav-link text-2xl font-semibold tracking-[0.08em] text-white">CADEN VOGT</a>
+          <p class="mt-3 max-w-[14rem] text-xs uppercase tracking-widerplus text-zinc-500">
+            Creative portfolio
+          </p>
+        </div>
+      </div>
+
+      <nav class="mt-10 block">
+        <ul class="space-y-4 text-xs uppercase tracking-widerplus text-zinc-400">
+          <li><a href="#about" data-page="about" class="nav-link transition hover:text-white">About</a></li>
+          <li><a href="#skills" data-page="skills" class="nav-link transition hover:text-white">Skills</a></li>
+          <li><a href="#projects" data-page="projects" class="nav-link transition hover:text-white">Projects</a></li>
+          <li><a href="#contact" data-page="contact" class="nav-link transition hover:text-white">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="mt-10 hidden lg:block">
+        <div class="inline-flex items-center gap-4">
+          <a href="https://www.instagram.com/cadenvogtt/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center text-zinc-400 hover:text-white transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm6-2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zM12 9a3 3 0 100 6 3 3 0 000-6z"/>
+            </svg>
+          </a>
+
+          <a href="https://www.youtube.com/@cadenvogt" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center text-zinc-400 hover:text-white transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21.8 8s-.2-1.4-.8-2c-.7-.8-1.5-.8-1.9-.9C16.4 5 12 5 12 5h0s-4.4 0-7.1.1c-.4.1-1.2.1-1.9.9C2.4 6.6 2.2 8 2.2 8S2 9.6 2 11.2v1.6C2 14.4 2.2 16 2.2 16s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.5.1 6.9.1 6.9.1s4.4 0 7.1-.1c.4-.1 1.2-.1 1.9-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.6C22 9.6 21.8 8 21.8 8zM9.8 14.6V9.4l5 2.6-5 2.6z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Home -->
+      <section id="home" data-section="home" class="page-section active border-b border-white/10 px-6 py-14 sm:px-8 lg:px-14 lg:py-16">
+        <div class="grid gap-10 xl:grid-cols-[1fr_0.9fr] xl:items-end min-h-[70vh]">
+          <div class="hidden xl:block"></div>
+          <div class="image-grain overflow-hidden rounded-sm border border-white/10 bg-zinc-950">
+            <img src="horseys.jpg" alt="Caden Vogt featured image" class="w-full h-full object-cover" />
+          </div>
+        </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Page -->
+      <section id="about" data-section="about" class="page-section px-6 py-14 sm:px-8 lg:px-14 lg:py-16">
+        <div class="max-w-4xl">
+          <p class="text-xs uppercase tracking-widerplus text-zinc-500">About</p>
+          <div class="mt-10 border-t border-white/10 pt-10">
+            <p class="text-xl leading-9 text-zinc-100 sm:text-2xl sm:leading-10">
+              My work is centered on strong framing, subtle mood, and simple storytelling. I’m drawn to images that feel honest, composed, and memorable.
+            </p>
+            <p class="mt-6 text-base leading-8 text-zinc-400">
+              I approach photography with a balance of technical precision and creative instinct. Whether I’m building a portrait, lifestyle, or project-based series, I focus on making each image feel cohesive within the larger body of work. I want the overall presentation to be clean and direct, letting the photography speak first.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Page -->
+      <section id="skills" data-section="skills" class="page-section px-6 py-14 sm:px-8 lg:px-14 lg:py-16">
+        <div class="max-w-6xl">
+          <p class="text-xs uppercase tracking-widerplus text-zinc-500">Skills</p>
+          <div class="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-4">
+            <div class="bg-black p-6">
+              <h3 class="text-sm uppercase tracking-[0.18em] text-white">Photography</h3>
+              <p class="mt-4 text-sm leading-7 text-zinc-400">Portraits, lifestyle, composition, lighting, and subject direction.</p>
+            </div>
+            <div class="bg-black p-6">
+              <h3 class="text-sm uppercase tracking-[0.18em] text-white">Editing</h3>
+              <p class="mt-4 text-sm leading-7 text-zinc-400">Image selection, retouching, tonal balance, and consistent visual polish.</p>
+            </div>
+            <div class="bg-black p-6">
+              <h3 class="text-sm uppercase tracking-[0.18em] text-white">Storytelling</h3>
+              <p class="mt-4 text-sm leading-7 text-zinc-400">Building narrative through sequences, detail shots, and visual mood.</p>
+            </div>
+            <div class="bg-black p-6">
+              <h3 class="text-sm uppercase tracking-[0.18em] text-white">Creative Direction</h3>
+              <p class="mt-4 text-sm leading-7 text-zinc-400">Concept development, styling input, and project presentation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Page -->
+      <section id="projects" data-section="projects" class="page-section px-6 py-14 sm:px-8 lg:px-14 lg:py-16">
+        <div class="max-w-6xl">
+          <p class="text-xs uppercase tracking-widerplus text-zinc-500">Projects</p>
+          <div class="mt-10 grid gap-10 md:grid-cols-2">
+            <article class="group">
+              <div class="image-grain overflow-hidden border border-white/10 bg-zinc-950">
+                <div class="flex aspect-[4/5] items-center justify-center bg-zinc-900 text-center text-zinc-500 transition duration-300 group-hover:scale-[1.01]">
+                  <div class="px-6">
+                    <p class="text-xs uppercase tracking-widerplus">Project image</p>
+                    <p class="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-400">Placeholder for Project 01</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="text-lg font-medium text-white">Urban Light Series</h3>
+                  <p class="mt-2 text-sm uppercase tracking-[0.16em] text-zinc-500">Editorial / Night / Architecture</p>
+                </div>
+                <span class="text-xs uppercase tracking-widerplus text-zinc-500">01</span>
+              </div>
+              <p class="mt-4 max-w-xl text-sm leading-7 text-zinc-400">
+                A project exploring contrast, structure, and movement in city environments using a restrained, cinematic visual style.
+              </p>
+            </article>
+
+            <article class="group">
+              <div class="image-grain overflow-hidden border border-white/10 bg-zinc-950">
+                <div class="flex aspect-[4/5] items-center justify-center bg-zinc-900 text-center text-zinc-500 transition duration-300 group-hover:scale-[1.01]">
+                  <div class="px-6">
+                    <p class="text-xs uppercase tracking-widerplus">Project image</p>
+                    <p class="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-400">Placeholder for Project 02</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="text-lg font-medium text-white">Portrait Study</h3>
+                  <p class="mt-2 text-sm uppercase tracking-[0.16em] text-zinc-500">Portrait / Natural Light / Expression</p>
+                </div>
+                <span class="text-xs uppercase tracking-widerplus text-zinc-500">02</span>
+              </div>
+              <p class="mt-4 max-w-xl text-sm leading-7 text-zinc-400">
+                A portrait series built around subtle emotion, minimal styling, and direct compositions that keep the focus on the subject.
+              </p>
+            </article>
+
+            <article class="group md:col-span-2">
+              <div class="image-grain overflow-hidden border border-white/10 bg-zinc-950">
+                <div class="flex aspect-[16/8] items-center justify-center bg-zinc-900 text-center text-zinc-500 transition duration-300 group-hover:scale-[1.01]">
+                  <div class="px-6">
+                    <p class="text-xs uppercase tracking-widerplus">Project image</p>
+                    <p class="mt-4 text-sm uppercase tracking-[0.16em] text-zinc-400">Placeholder for Project 03</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="text-lg font-medium text-white">Brand Story Campaign</h3>
+                  <p class="mt-2 text-sm uppercase tracking-[0.16em] text-zinc-500">Lifestyle / Product / Visual Narrative</p>
+                </div>
+                <span class="text-xs uppercase tracking-widerplus text-zinc-500">03</span>
+              </div>
+              <p class="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">
+                A wider campaign layout that combines portraits, detail shots, and environmental imagery into one clean visual story.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Page -->
+      <section id="contact" data-section="contact" class="page-section px-6 py-14 sm:px-8 lg:px-14 lg:py-16">
+        <div class="max-w-6xl grid gap-10 xl:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p class="text-xs uppercase tracking-widerplus text-zinc-500">Contact</p>
+            <h2 class="mt-6 text-2xl font-medium text-white sm:text-3xl">Let’s connect.</h2>
+            <p class="mt-5 max-w-xl text-base leading-8 text-zinc-400">
+              If you’re hiring, collaborating, or looking for someone to contribute strong visual work to a project, feel free to reach out.
+            </p>
+            <div class="mt-8 space-y-3 text-sm uppercase tracking-[0.16em] text-zinc-500">
+              <p>Email: <span class="text-zinc-300 normal-case tracking-normal">caden.vogt@icloud.com</span></p>
+              <p>Location: <span class="text-zinc-300 normal-case tracking-normal">Boston, MA</span></p>
+            </div>
+          </div>
+
+          <form class="border border-white/10 bg-zinc-950 p-6 sm:p-8">
+            <div class="grid gap-6">
+              <div>
+                <label for="name" class="mb-2 block text-xs uppercase tracking-[0.18em] text-zinc-500">Name</label>
+                <input id="name" type="text" placeholder="Your name" class="w-full border border-white/10 bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white focus:outline-none" />
+              </div>
+              <div>
+                <label for="email" class="mb-2 block text-xs uppercase tracking-[0.18em] text-zinc-500">Email</label>
+                <input id="email" type="email" placeholder="caden.vogt@icloud.com" class="w-full border border-white/10 bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white focus:outline-none" />
+              </div>
+              <div>
+                <label for="message" class="mb-2 block text-xs uppercase tracking-[0.18em] text-zinc-500">Message</label>
+                <textarea id="message" rows="6" placeholder="Tell me about the opportunity or project" class="w-full border border-white/10 bg-black px-4 py-3 text-white placeholder:text-zinc-600 focus:border-white focus:outline-none"></textarea>
+              </div>
+              <button type="submit" class="w-fit border border-white bg-white px-6 py-3 text-xs uppercase tracking-[0.18em] text-black transition hover:opacity-90">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer class="border-t border-white/10 px-6 py-8 text-center text-xs uppercase tracking-widerplus text-zinc-600 sm:px-8 lg:px-14">
+        © 2026 Caden Vogt
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll('[data-section]');
+    const links = document.querySelectorAll('.nav-link');
+
+    function showSectionFromHash() {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      const target = document.querySelector(`[data-section="${hash}"]`) || document.querySelector('[data-section="home"]');
+
+      sections.forEach(section => section.classList.remove('active'));
+      target.classList.add('active');
+
+      links.forEach(link => {
+        link.classList.toggle('active', link.dataset.page === hash);
+      });
+    }
+
+    window.addEventListener('hashchange', showSectionFromHash);
+    window.addEventListener('DOMContentLoaded', showSectionFromHash);
+  </script>
+</body>
+</html>
