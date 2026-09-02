@@ -1,0 +1,24 @@
+.DS_Store
+**/.DS_Store
+
+# Source originals live beside the site; the preview is cadenvogt.com
+/Brand Photography/
+/Expired Film/
+/Film Burns:Textures/
+/Film Photography/
+/Logo Designs:T-Shirts/
+/Minor Art Show/
+/Multiple Exposures/
+/Photoshop Reworks/
+/Super 8/
+/Videography/
+/*.jpg
+/*.pdf
+
+# Unused duplicate copies inside the site folder
+cadenvogt.com/* copy/
+
+# Files too large for git (keep locally for preview)
+cadenvogt.com/images/super-8/super 8 whole footage.mp4
+cadenvogt.com/images/social-media-ads/greenstone final video copy.mp4
+cadenvogt.com/images/social-media-ads/hb teaser done.mp4
