@@ -4,12 +4,12 @@
   var GAP = 8;
   var ALBUMS = {
     "35mm-film-photography": {
-      title: "35mm Film",
-      dataUrl: "data/film-photography.json",
+      title: "Life",
+      dataUrl: "data/film-photography.json?v=refresh",
     },
     "expired-film": {
-      title: "Expired Film",
-      dataUrl: "data/expired-film.json",
+      title: "Expired",
+      dataUrl: "data/expired-film.json?v=refresh",
     },
     "multiple-exposures": {
       title: "Multiple Exposures",
@@ -27,6 +27,18 @@
       title: "Providence Art Show",
       dataUrl: "data/providence-art-show.json",
     },
+    "black-and-white": {
+      title: "Black and White",
+      dataUrl: "data/black-and-white.json",
+    },
+    "brimfield-2026": {
+      title: "Brimfield 2026",
+      dataUrl: "data/brimfield-2026.json",
+    },
+    tattoo: {
+      title: "Tattoo",
+      dataUrl: "data/tattoo.json",
+    },
     textures: {
       title: "Textures",
       dataUrl: "data/textures.json",
@@ -37,18 +49,18 @@
     },
     "social-media-ads": {
       title: "Social Media Ads",
-      dataUrl: "data/social-media-ads.json?v=order32154",
+      dataUrl: "data/social-media-ads.json?v=youtube",
       keepOrder: true,
       scramble: false,
-      player: "video",
+      player: "youtube",
       stack: true,
     },
     "super-8": {
       title: "Super 8",
-      dataUrl: "data/super-8.json",
+      dataUrl: "data/super-8.json?v=youtube",
       keepOrder: true,
       scramble: false,
-      player: "video",
+      player: "youtube",
       stack: true,
     },
     "full-length-videos": {
@@ -206,10 +218,10 @@
     var hash = (location.hash || "#/").replace(/^#/, "");
     if (hash.charAt(0) !== "/") hash = "/" + hash;
     hash = hash.replace(/\/+$/, "") || "/";
-    if (hash === "/film-photography/35mm" || hash === "/35mm-film-photography") {
+    if (hash === "/film-photography/35mm" || hash === "/35mm-film-photography" || hash === "/life") {
       return { name: "album", id: "35mm-film-photography" };
     }
-    if (hash === "/film-photography/expired" || hash === "/expired-film") {
+    if (hash === "/film-photography/expired" || hash === "/expired-film" || hash === "/expired") {
       return { name: "album", id: "expired-film" };
     }
     if (hash === "/film-photography/multiple-exposures" || hash === "/multiple-exposures") {
@@ -223,6 +235,15 @@
     }
     if (hash === "/film-photography/providence-art-show" || hash === "/providence-art-show") {
       return { name: "album", id: "providence-art-show" };
+    }
+    if (hash === "/film-photography/black-and-white" || hash === "/black-and-white") {
+      return { name: "album", id: "black-and-white" };
+    }
+    if (hash === "/film-photography/brimfield-2026" || hash === "/brimfield-2026") {
+      return { name: "album", id: "brimfield-2026" };
+    }
+    if (hash === "/film-photography/tattoo" || hash === "/tattoo") {
+      return { name: "album", id: "tattoo" };
     }
     if (hash === "/design/textures" || hash === "/textures") {
       return { name: "album", id: "textures" };
@@ -255,6 +276,20 @@
       if (on) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     });
+    document.querySelectorAll(".nav-group").forEach(function (group) {
+      if (!group.querySelector("a.is-current")) return;
+      group.classList.add("is-open");
+      var btn = group.querySelector(".nav-parent");
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    });
+  }
+
+  function toggleNavGroup(btn) {
+    var group = btn.closest(".nav-group");
+    if (!group) return;
+    var open = !group.classList.contains("is-open");
+    group.classList.toggle("is-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
   function closeMenu() {
@@ -262,6 +297,7 @@
     if (els.drawer) els.drawer.classList.remove("is-open");
     if (els.backdrop) els.backdrop.classList.remove("is-open");
     if (els.menuToggle) els.menuToggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("is-menu-open");
     document.body.style.overflow = "";
   }
 
@@ -270,6 +306,7 @@
     if (els.drawer) els.drawer.classList.add("is-open");
     if (els.backdrop) els.backdrop.classList.add("is-open");
     if (els.menuToggle) els.menuToggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("is-menu-open");
     document.body.style.overflow = "hidden";
   }
 
@@ -290,7 +327,7 @@
 
   function computeMasonry(tiles, width) {
     var cols = columnCount(width);
-    var colW = (width - GAP * (cols - 1)) / cols;
+    var colW = Math.floor((width - GAP * (cols - 1)) / cols);
     var heights = new Array(cols).fill(0);
     var positions = [];
     tiles.forEach(function (tile) {
@@ -421,25 +458,36 @@
     var gate = $("#scanner-gate");
     var film = $(".film");
     if (!gate || !film) return;
-    var maxW = Math.min(els.main.clientWidth - 8, 900);
-    var topPad = window.innerWidth > 767 ? 50 : 66;
+    var wrap = els.main.querySelector(".main-wrap") || els.main;
+    var maxW = Math.min(wrap.clientWidth, 900);
+    var topPad = window.matchMedia("(max-width: 767px), (max-width: 950px) and (hover: none) and (orientation: landscape)").matches ? 66 : 50;
     var maxH = Math.max(320, window.innerHeight - topPad - 40);
     gate.style.width = Math.round(maxW) + "px";
     gate.style.height = Math.round(maxH) + "px";
     film.style.width = Math.round(maxW) + "px";
   }
 
-  function nextScanPhoto() {
-    if (!state.scanDeck.length) {
-      var pool = state.photos;
-      if (state.scanCurrent) {
-        pool = state.photos.filter(function (p) {
-          return p.src !== state.scanCurrent.src;
-        });
+  function reshuffleScanDeck(avoidPhoto) {
+    var deck = mixAcrossCategories(state.photos, avoidPhoto && avoidPhoto.album);
+    if (avoidPhoto && deck.length > 1 && deck[0].src === avoidPhoto.src) {
+      var swapAt = 1;
+      var j;
+      for (j = 1; j < deck.length; j++) {
+        if (deck[j].src !== avoidPhoto.src) {
+          swapAt = j;
+          break;
+        }
       }
-      state.scanDeck = mixAcrossCategories(pool, state.scanCurrent && state.scanCurrent.album);
+      var tmp = deck[0];
+      deck[0] = deck[swapAt];
+      deck[swapAt] = tmp;
     }
-    return state.scanDeck.shift() || state.photos[0];
+    state.scanDeck = deck;
+  }
+
+  function nextScanPhoto() {
+    if (!state.scanDeck.length) reshuffleScanDeck(state.scanCurrent);
+    return state.scanDeck.shift() || null;
   }
 
   function applyFrame(img, photo) {
@@ -477,13 +525,17 @@
       return;
     }
     var nextPhoto = nextScanPhoto();
-    if (!nextPhoto) return;
+    if (!nextPhoto) {
+      scheduleScanAdvance();
+      return;
+    }
     state.scanBusy = true;
     var scanner = $(".scanner");
     var current = $(".frame-current");
     var incoming = $(".frame-incoming");
     if (!scanner || !current || !incoming) {
       state.scanBusy = false;
+      scheduleScanAdvance();
       return;
     }
 
@@ -520,9 +572,12 @@
     stopScanner();
     state.scanPaused = false;
     state.scanCurrent = firstPhoto;
-    state.scanDeck = mixAcrossCategories(state.photos.filter(function (p) {
+    var rest = state.photos.filter(function (p) {
       return p.src !== firstPhoto.src;
-    }), firstPhoto.album);
+    });
+    state.scanDeck = rest.length
+      ? mixAcrossCategories(rest, firstPhoto.album)
+      : [];
     sizeScannerStage();
     scheduleScanAdvance();
   }
@@ -596,16 +651,20 @@
   }
 
   function renderYoutubeStack(album, videos) {
-    var html = '<div class="main-wrap"><h1 class="page-title">' + escapeHtml(album.title) + '</h1><div class="yt-stack" id="grid">';
+    var html = '<div class="main-wrap is-centered"><h1 class="sr-only">' + escapeHtml(album.title) + '</h1><div class="yt-stack is-centered" id="grid">';
     videos.forEach(function (video, i) {
-      var title = escapeHtml(video.title);
-      var duration = escapeHtml(video.duration);
-      var year = video.year ? ' <span class="yt-year">' + escapeHtml(video.year) + "</span>" : "";
+      var title = escapeHtml(video.title || album.title);
+      var duration = video.duration ? ' <span class="yt-length">' + escapeHtml(video.duration) + "</span>" : "";
+      var year = video.year ? ' <span class="yt-year">' + escapeHtml(String(video.year)) + "</span>" : "";
       var id = encodeURIComponent(video.id);
+      var ratio = video.width && video.height ? video.width + " / " + video.height : "16 / 9";
+      var meta = album.hideMeta
+        ? ""
+        : '<p class="yt-meta"><span class="yt-title">' + title + "</span>" + year + duration + "</p>";
       html +=
         '<article class="yt-item">' +
-          '<p class="yt-meta"><span class="yt-title">' + title + "</span>" + year + ' <span class="yt-length">' + duration + "</span></p>" +
-          '<div class="yt-frame">' +
+          meta +
+          '<div class="yt-frame" style="aspect-ratio:' + ratio + '">' +
             '<button type="button" class="yt-play js-play-youtube" data-id="' + id +
             '" data-title="' + title + '" aria-label="Play ' + title + '">' +
               '<img class="yt-thumb" data-yt="' + id + '" src="' + youtubeThumbUrl(video.id) +
@@ -638,7 +697,7 @@
       return;
     }
     var layoutClass = album.stack ? "grid is-stack" : "grid";
-    var html = '<div class="main-wrap"><h1 class="page-title">' + album.title + '</h1><div class="' + layoutClass + '" id="grid">';
+    var html = '<div class="main-wrap is-centered"><h1 class="sr-only">' + escapeHtml(album.title) + '</h1><div class="' + layoutClass + '" id="grid">';
     var openClass = album.player === "video" ? "js-open-player" : "js-open-lightbox";
     photos.forEach(function (photo, i) {
       html +=
@@ -673,11 +732,13 @@
     setCurrentNav("about");
     document.title = "About — Caden Vogt";
     els.main.innerHTML =
-      '<div class="main-wrap">' +
+      '<div class="main-wrap is-centered">' +
         '<article class="about">' +
-          '<h1 class="page-title">About</h1>' +
+          '<h1 class="sr-only">About</h1>' +
           '<p class="lede">Caden Vogt is a photographer, videographer, and graphic designer based in Greater Boston, Massachusetts.</p>' +
-          '<p>A Providence College graduate, he works across analog and digital mediums — 35mm film, video, and design — to build a body of work that is tactile, considered, and ready for professional use.</p>' +
+          '<p>His creative background started with scootering around Boston with friends and wanting to document everything that came with it. Filming videos and shooting photos gradually became just as important as riding itself, shaping an appreciation for capturing the people, places, and smaller moments around him.</p>' +
+          '<p>That same instinct carried into design. Always having an eye for what looked and felt right, Caden began experimenting with graphics, clothing, and branding — eventually screen printing his own pieces, even out of his college dorm room. Through his personal brand, Headbuss, and work with other brands, he\u2019s continued to develop that eye across photography, video, design, and physical products.</p>' +
+          '<p>At the center of it all is the same reason he picked up a camera in the first place: being surrounded by great friends, wanting to make things, and wanting to hold onto the moments that make life interesting.</p>' +
           '<img class="about-photo" src="images/about.jpg" width="678" height="1024" alt="Caden Vogt" decoding="async">' +
         "</article>" +
       "</div>";
@@ -691,6 +752,7 @@
     els.grid = null;
     var r = route();
     els.main.classList.toggle("is-home", r.name === "home");
+    els.main.classList.toggle("is-centered", r.name !== "home");
     if (r.name === "about") renderAbout();
     else if (r.name === "album") renderAlbum();
     else renderHome();
@@ -848,7 +910,7 @@
       if (!state.scrambling) layoutGrid();
       if (route().name === "home") sizeScannerStage();
     }, 80);
-    if (window.innerWidth > 767 && state.menuOpen) closeMenu();
+    if (state.menuOpen && !window.matchMedia("(max-width: 767px), (max-width: 950px) and (hover: none) and (orientation: landscape)").matches) closeMenu();
   }
 
   function init() {
@@ -867,6 +929,11 @@
     els.backdrop.addEventListener("click", closeMenu);
     els.drawer.addEventListener("click", function (e) {
       if (e.target.closest("a")) closeMenu();
+    });
+    document.querySelectorAll(".nav-parent").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        toggleNavGroup(btn);
+      });
     });
 
     els.main.addEventListener("click", onMainClick);
@@ -908,6 +975,7 @@
       if (document.hidden) {
         state.scanPaused = true;
         clearTimeout(state.scanTimer);
+        state.scanBusy = false;
       } else if (!els.lightbox.classList.contains("is-open")) {
         state.scanPaused = false;
         scheduleScanAdvance();

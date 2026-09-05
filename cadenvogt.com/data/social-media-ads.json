@@ -1,32 +1,37 @@
 [
   {
-    "src": "images/social-media-ads/hb%20teaser%20done.mp4",
-    "width": 1920,
-    "height": 1080,
-    "type": "video"
+    "type": "youtube",
+    "id": "owFq1evbPzw",
+    "title": "Headbuss Full Length Teaser",
+    "width": 16,
+    "height": 9
   },
   {
-    "src": "images/social-media-ads/greenstone%20final%20video%20copy.mp4",
-    "width": 1920,
-    "height": 1080,
-    "type": "video"
+    "type": "youtube",
+    "id": "_vUsHn4Q--o",
+    "title": "Greenewrks Runway Show at Greenstone Studios",
+    "width": 16,
+    "height": 9
   },
   {
-    "src": "images/social-media-ads/finished%20hb%20tshirt%20vid%20copy.mp4",
-    "width": 640,
-    "height": 480,
-    "type": "video"
+    "type": "youtube",
+    "id": "VTCVEuAm2ng",
+    "title": "Sharp Teeth Screen Printing Promo",
+    "width": 4,
+    "height": 3
   },
   {
-    "src": "images/social-media-ads/joined_video_a335892f79e64ade8b4cbae0d456d839.mp4",
-    "width": 720,
-    "height": 542,
-    "type": "video"
+    "type": "youtube",
+    "id": "_lLU3fsG4I4",
+    "title": "Skull Boy Promo",
+    "width": 4,
+    "height": 3
   },
   {
-    "src": "images/social-media-ads/joined_video_9eba9350a2b6497fb321539de0585707.mp4",
-    "width": 720,
-    "height": 404,
-    "type": "video"
+    "type": "youtube",
+    "id": "JjwR7T_pJYM",
+    "title": "hollow hoodie promo leak",
+    "width": 16,
+    "height": 9
   }
 ]

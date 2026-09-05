@@ -12,6 +12,7 @@ body {
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -22,14 +23,22 @@ body {
   line-height: 1.5;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
-img {
+img,
+video {
   max-width: 100%;
   height: auto;
   vertical-align: bottom;
   border: 0;
   image-rendering: auto;
+}
+
+iframe {
+  max-width: 100%;
+  border: 0;
 }
 
 a {
@@ -49,6 +58,8 @@ button {
 /* —— Layout —— */
 .page {
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -112,7 +123,13 @@ button {
 }
 
 .nav .nav-parent {
-  cursor: default;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
 }
 
 .nav a::before,
@@ -147,7 +164,8 @@ button {
   opacity: 0;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav .nav-parent:hover {
   color: #111;
 }
 
@@ -157,8 +175,13 @@ button {
 }
 
 .nav .subnav {
+  display: none;
   margin-top: 6px;
   margin-left: 8px;
+}
+
+.nav-group.is-open > .subnav {
+  display: block;
 }
 
 .nav .subnav li {
@@ -185,8 +208,14 @@ button {
   padding: 50px 30px;
 }
 
+.main.is-centered {
+  padding: 50px 30px 40px;
+}
+
 .main-wrap {
   max-width: 1600px;
+  min-width: 0;
+  width: 100%;
 }
 
 .main.is-home .main-wrap {
@@ -239,6 +268,7 @@ button {
 /* —— Home film scanner —— */
 .scanner {
   width: min(100%, 900px);
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -248,12 +278,14 @@ button {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  max-width: 100%;
 }
 
 .gate {
   position: relative;
   display: block;
   width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   background: transparent;
   overflow: hidden;
@@ -326,7 +358,9 @@ button {
 /* —— About —— */
 .about {
   max-width: 640px;
+  margin: 0 auto;
   color: #555;
+  text-align: left;
 }
 
 .about-photo {
@@ -351,6 +385,8 @@ button {
 .grid {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .tile {
@@ -428,6 +464,30 @@ button {
   max-width: min(100%, 920px);
 }
 
+.main-wrap.is-centered {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-wrap.is-centered .grid {
+  width: 100%;
+}
+
+.yt-stack.is-centered {
+  width: 100%;
+  max-width: min(100%, 860px);
+  margin: 0 auto;
+}
+
+.yt-stack.is-centered .yt-item {
+  width: 100%;
+}
+
 .yt-item {
   width: 100%;
 }
@@ -439,6 +499,7 @@ button {
   letter-spacing: 0.02em;
   color: #666;
   text-align: left;
+  overflow-wrap: anywhere;
 }
 
 .yt-title {
@@ -528,14 +589,15 @@ button {
   left: 0;
   z-index: 320;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   background: #fff;
+  align-items: center;
+  overflow: visible;
 }
 
 .menu-toggle {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  flex: 0 0 50px;
   width: 50px;
   height: 50px;
   display: flex;
@@ -547,6 +609,22 @@ button {
 .menu-toggle:hover,
 .menu-toggle:focus {
   color: #000;
+}
+
+.mob-brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0 12px 0 2px;
+  color: #111;
+}
+
+.mob-bar .brand-mark {
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .hamburger {
@@ -596,9 +674,11 @@ button {
   inset: 0;
   z-index: 400;
   display: none;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 24px 56px;
   background: rgba(255, 255, 255, 0.97);
+  overflow: hidden;
 }
 
 .lightbox.is-open {
@@ -606,15 +686,19 @@ button {
 }
 
 .lightbox-image-wrap {
-  max-width: calc(100vw - 80px);
-  max-height: calc(100vh - 40px);
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lightbox img,
 .lightbox video {
   display: block;
-  max-width: calc(100vw - 80px);
-  max-height: calc(100vh - 40px);
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   margin: 0 auto;
@@ -655,14 +739,14 @@ button {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-width: calc(100vw - 80px);
-  max-height: calc(100vh - 80px);
+  max-width: calc(100% - 80px);
+  max-height: calc(100% - 80px);
 }
 
 .video-player video {
   display: block;
   max-width: 100%;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100% - 40px);
   width: auto;
   height: auto;
   background: #000;
@@ -748,22 +832,50 @@ button {
 }
 
 /* —— Responsive —— */
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 950px) and (hover: none) and (orientation: landscape) {
   .mob-bar {
-    display: block;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
   }
 
   .sidebar {
     display: none;
   }
 
-  .main {
+  .main,
+  .main.is-home,
+  .main.is-centered {
     margin-left: 0;
     padding: 66px 12px 32px;
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
-  .main.is-home {
-    padding: 66px 12px 32px;
+  .main-wrap,
+  .main-wrap.is-centered,
+  .grid,
+  .yt-stack,
+  .yt-stack.is-centered,
+  .about,
+  .scanner,
+  .film,
+  .gate {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .about-photo {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .tile {
+    max-width: 100%;
   }
 
   .backdrop.is-open {
@@ -791,14 +903,21 @@ button {
   }
 
   .mobile-drawer .sidebar-inner {
-    padding: 28px 24px 24px;
+    padding: 56px 24px 24px;
   }
 
-  .mobile-drawer .brand-mark {
+  body.is-menu-open .mob-bar {
+    background: transparent;
+  }
+
+  body.is-menu-open .mob-brand {
+    visibility: hidden;
+  }
+
+  body.is-menu-open .menu-toggle,
+  body.is-menu-open .menu-toggle:hover,
+  body.is-menu-open .menu-toggle:focus {
     color: #fff;
-    font-size: 26px;
-    letter-spacing: 0.04em;
-    line-height: 1.2;
   }
 
   .mobile-drawer .nav a,
@@ -807,7 +926,8 @@ button {
   }
 
   .mobile-drawer .nav a:hover,
-  .mobile-drawer .nav a.is-current {
+  .mobile-drawer .nav a.is-current,
+  .mobile-drawer .nav .nav-parent:hover {
     color: #fff;
   }
 
@@ -815,27 +935,41 @@ button {
     color: #888;
   }
 
+  .lightbox {
+    padding: 56px 56px 16px;
+  }
+
   .lightbox img,
   .lightbox video,
   .lightbox-image-wrap {
-    max-width: calc(100vw - 24px);
-    max-height: calc(100vh - 90px);
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .lightbox-prev,
   .lightbox-next {
-    top: auto;
-    bottom: 8px;
-    transform: none;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 64px;
   }
 
+  .lightbox-prev {
+    left: 2px;
+  }
+
+  .lightbox-next {
+    right: 2px;
+  }
+
+  .video-player-frame,
   .video-player video {
-    max-width: calc(100vw - 16px);
-    max-height: calc(100vh - 72px);
+    max-width: calc(100% - 16px);
+    max-height: calc(100% - 72px);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) and (min-height: 600px) {
   .sidebar {
     width: 210px;
   }
@@ -854,7 +988,8 @@ button {
     padding: 36px 20px 32px 0;
   }
 
-  .main.is-home {
-    padding: 36px 20px;
+  .main.is-home,
+  .main.is-centered {
+    padding: 36px 20px 32px;
   }
 }

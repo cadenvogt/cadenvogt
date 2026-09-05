@@ -2,52 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Caden Vogt</title>
   <meta name="description" content="Portfolio of Caden Vogt — 35mm film photography, videography, and graphic design. Greater Boston, Massachusetts.">
   <meta name="author" content="Caden Vogt">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=yt-year">
+  <link rel="stylesheet" href="css/style.css?v=menu-cover">
 </head>
 <body>
   <header class="mob-bar">
     <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span class="hamburger" aria-hidden="true"><span></span></span>
     </button>
+    <a class="mob-brand" href="#/" aria-label="Caden Vogt home">
+      <span class="brand-mark">Caden Vogt</span>
+    </a>
   </header>
 
   <div class="backdrop" id="backdrop"></div>
 
   <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
     <div class="sidebar-inner">
-      <a class="brand" href="#/" aria-label="Caden Vogt home">
-        <span class="brand-mark">Caden Vogt</span>
-      </a>
       <nav class="nav">
         <ul>
           <li><a href="#/" data-nav="home">Home</a></li>
-          <li>
-            <span class="nav-parent">Film Photography</span>
+          <li class="nav-group">
+            <button type="button" class="nav-parent" aria-expanded="false">Film Photography</button>
             <ul class="subnav">
-              <li><a href="#/35mm-film-photography" data-nav="35mm-film-photography">35mm Film</a></li>
-              <li><a href="#/expired-film" data-nav="expired-film">Expired Film</a></li>
+              <li><a href="#/life" data-nav="35mm-film-photography">Life</a></li>
+              <li><a href="#/expired" data-nav="expired-film">Expired</a></li>
               <li><a href="#/multiple-exposures" data-nav="multiple-exposures">Multiple Exposures</a></li>
               <li><a href="#/brand-work" data-nav="brand-work">Brand Work</a></li>
               <li><a href="#/providence-art-show" data-nav="providence-art-show">Providence Art Show</a></li>
-            </ul>
-          </li>
-          <li>
-            <span class="nav-parent">Design</span>
-            <ul class="subnav">
-              <li><a href="#/logos-clothing" data-nav="logos-clothing">Logos/Clothing</a></li>
-              <li><a href="#/textures" data-nav="textures">Textures</a></li>
+              <li><a href="#/black-and-white" data-nav="black-and-white">Black and White</a></li>
+              <li><a href="#/brimfield-2026" data-nav="brimfield-2026">Brimfield 2026</a></li>
+              <li><a href="#/tattoo" data-nav="tattoo">Tattoo</a></li>
               <li><a href="#/reworks" data-nav="reworks">Reworks</a></li>
             </ul>
           </li>
-          <li>
-            <span class="nav-parent">Videography</span>
+          <li class="nav-group">
+            <button type="button" class="nav-parent" aria-expanded="false">Design</button>
+            <ul class="subnav">
+              <li><a href="#/logos-clothing" data-nav="logos-clothing">Logos/Clothing</a></li>
+              <li><a href="#/textures" data-nav="textures">Textures</a></li>
+            </ul>
+          </li>
+          <li class="nav-group">
+            <button type="button" class="nav-parent" aria-expanded="false">Videography</button>
             <ul class="subnav">
               <li><a href="#/full-length-videos" data-nav="full-length-videos">Full-Length Videos</a></li>
               <li><a href="#/social-media-ads" data-nav="social-media-ads">Social Media Ads</a></li>
@@ -70,26 +73,29 @@
         <nav class="nav">
           <ul>
             <li><a href="#/" data-nav="home">Home</a></li>
-            <li>
-              <span class="nav-parent">Film Photography</span>
+            <li class="nav-group">
+              <button type="button" class="nav-parent" aria-expanded="false">Film Photography</button>
               <ul class="subnav">
-                <li><a href="#/35mm-film-photography" data-nav="35mm-film-photography">35mm Film</a></li>
-              <li><a href="#/expired-film" data-nav="expired-film">Expired Film</a></li>
+                <li><a href="#/life" data-nav="35mm-film-photography">Life</a></li>
+                <li><a href="#/expired" data-nav="expired-film">Expired</a></li>
                 <li><a href="#/multiple-exposures" data-nav="multiple-exposures">Multiple Exposures</a></li>
                 <li><a href="#/brand-work" data-nav="brand-work">Brand Work</a></li>
                 <li><a href="#/providence-art-show" data-nav="providence-art-show">Providence Art Show</a></li>
-              </ul>
-            </li>
-            <li>
-              <span class="nav-parent">Design</span>
-              <ul class="subnav">
-                <li><a href="#/logos-clothing" data-nav="logos-clothing">Logos/Clothing</a></li>
-                <li><a href="#/textures" data-nav="textures">Textures</a></li>
+                <li><a href="#/black-and-white" data-nav="black-and-white">Black and White</a></li>
+                <li><a href="#/brimfield-2026" data-nav="brimfield-2026">Brimfield 2026</a></li>
+                <li><a href="#/tattoo" data-nav="tattoo">Tattoo</a></li>
                 <li><a href="#/reworks" data-nav="reworks">Reworks</a></li>
               </ul>
             </li>
-            <li>
-              <span class="nav-parent">Videography</span>
+            <li class="nav-group">
+              <button type="button" class="nav-parent" aria-expanded="false">Design</button>
+              <ul class="subnav">
+                <li><a href="#/logos-clothing" data-nav="logos-clothing">Logos/Clothing</a></li>
+                <li><a href="#/textures" data-nav="textures">Textures</a></li>
+              </ul>
+            </li>
+            <li class="nav-group">
+              <button type="button" class="nav-parent" aria-expanded="false">Videography</button>
               <ul class="subnav">
                 <li><a href="#/full-length-videos" data-nav="full-length-videos">Full-Length Videos</a></li>
                 <li><a href="#/social-media-ads" data-nav="social-media-ads">Social Media Ads</a></li>
@@ -124,6 +130,6 @@
     </div>
   </div>
 
-  <script src="js/site.js?v=yt-year"></script>
+  <script src="js/site.js?v=home-loop"></script>
 </body>
 </html>
